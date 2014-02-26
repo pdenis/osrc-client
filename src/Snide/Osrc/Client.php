@@ -63,12 +63,12 @@ class Client
     }
 
     /**
-     * Fetch data from repository URL
+     * Fetch data from User URL
      *
      * @param Model\User $user
      * @return Model\User
      */
-    public function fetchRepository(User $user)
+    public function fetchUser(User $user)
     {
         $response = $this->getResponse(
             sprintf('%s.json',

@@ -37,11 +37,11 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
     public function testFetchRepository()
     {
-        $user = $this->object->fetchRepository(new \Snide\Osrc\Model\User('pdenis'));
+        $user = $this->object->fetchUser(new \Snide\Osrc\Model\User('pdenis'));
         $this->assertInstanceOf('\Snide\Osrc\Model\User', $user);
 
         try {
-            $user = $this->object->fetchRepository(new \Snide\Osrc\Model\User('unknown_pdenis'));
+            $user = $this->object->fetchUser(new \Snide\Osrc\Model\User('unknown_pdenis'));
             $this->fail('Undefined repo');
         }catch(\Exception $e) {
 
