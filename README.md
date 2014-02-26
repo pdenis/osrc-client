@@ -19,3 +19,14 @@ If you use composer, add osrc-client library as a dependency to the composer.jso
 ```
 
 ## Usage
+
+To access http://osrc.dfm.io/username.json, you can do :
+
+```php
+<?php
+
+    $client = new Snide\Osrc\Client();
+    $repo = $client->fetchUser(new User('username'));
+```
+
+That's all!
