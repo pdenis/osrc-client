@@ -1,7 +1,5 @@
 <?php
 
-namespace Snide\Osrc;
-
 /*
  * This file is part of the Snide osrc-httpClient package.
  *
@@ -53,7 +51,7 @@ class Client
      */
     public function __construct(SimpleHydrator $hydrator = null)
     {
-        if(null === $hydrator) {
+        if (null === $hydrator) {
             $hydrator = new SimpleHydrator();
         }
 
