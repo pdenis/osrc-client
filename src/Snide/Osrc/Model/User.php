@@ -56,7 +56,32 @@ class User
     /**
      * @var array
      */
-    protected $usage;
+    protected $pushEvents;
+
+    /**
+     * @var array
+     */
+    protected $watchEvents;
+
+    /**
+     * @var array
+     */
+    protected $createEvents;
+
+    /**
+     * @var array
+     */
+    protected $gistEvents;
+
+    /**
+     * @var array
+     */
+    protected $deleteEvents;
+
+    /**
+     * @var array
+     */
+    protected $languages;
 
     /**
      * Constructor
@@ -169,15 +194,8 @@ class User
      */
     public function setUsage($usage)
     {
-        $this->usage = $usage;
-    }
-
-    /**
-     * @return array
-     */
-    public function getUsage()
-    {
-        return $this->usage;
+        $this->loadEvents($usage['events']);
+        $this->setLanguages($usage['languages']);
     }
 
     /**
@@ -194,5 +212,114 @@ class User
     public function getUsername()
     {
         return $this->username;
+    }
+
+    /**
+     * @param array $createEvents
+     */
+    public function setCreateEvents($createEvents)
+    {
+        $this->createEvents = $createEvents;
+    }
+
+    /**
+     * @return array
+     */
+    public function getCreateEvents()
+    {
+        return $this->createEvents;
+    }
+
+    /**
+     * @param array $deleteEvents
+     */
+    public function setDeleteEvents($deleteEvents)
+    {
+        $this->deleteEvents = $deleteEvents;
+    }
+
+    /**
+     * @return array
+     */
+    public function getDeleteEvents()
+    {
+        return $this->deleteEvents;
+    }
+
+    /**
+     * @param array $gistEvents
+     */
+    public function setGistEvents($gistEvents)
+    {
+        $this->gistEvents = $gistEvents;
+    }
+
+    /**
+     * @return array
+     */
+    public function getGistEvents()
+    {
+        return $this->gistEvents;
+    }
+
+    /**
+     * @param array $languages
+     */
+    public function setLanguages($languages)
+    {
+        $this->languages = $languages;
+    }
+
+    /**
+     * @return array
+     */
+    public function getLanguages()
+    {
+        return $this->languages;
+    }
+
+    /**
+     * @param array $pushEvents
+     */
+    public function setPushEvents($pushEvents)
+    {
+        $this->pushEvents = $pushEvents;
+    }
+
+    /**
+     * @return array
+     */
+    public function getPushEvents()
+    {
+        return $this->pushEvents;
+    }
+
+    /**
+     * @param array $watchEvents
+     */
+    public function setWatchEvents($watchEvents)
+    {
+        $this->watchEvents = $watchEvents;
+    }
+
+    /**
+     * @return array
+     */
+    public function getWatchEvents()
+    {
+        return $this->watchEvents;
+    }
+
+    /**
+     * Load events
+     *
+     * @param array $events
+     */
+    protected function loadEvents(array $events = array())
+    {
+        foreach ($events as $event) {
+            $method = 'set'.$event['type'].'s';
+            $this->$method($event);
+        }
     }
 }
